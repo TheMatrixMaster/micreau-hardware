@@ -2,7 +2,7 @@
 import serial
 import requests
 
-ard = serial.Serial('COM5', 9600, timeout=.5, parity=serial.PARITY_NONE)
+ard = serial.Serial('/dev/ttyACM0', 9600, timeout=.5, parity=serial.PARITY_NONE)
 
 micreau_url = "https://micreau-dev.herokuapp.com/api/"
 
