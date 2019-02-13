@@ -4,8 +4,8 @@ import requests
 
 ard = serial.Serial('COM5', 9600, timeout=.5, parity=serial.PARITY_NONE)
 
+micreau_url = "https://micreau-dev.herokuapp.com/api/"
 
-serverdata = {}
 sensorid = 0
 
 while True:
@@ -18,6 +18,8 @@ while True:
 		DHT_HUM = clean_msg.split(' ')[1]
 		DS18B20_TEMP = clean_msg.split(' ')[2]
 
-		print(DHT_TEMP, DHT_HUM, DS18B20_TEMP)
+		hum_req = requests.request('POST', url=(micreau_url + 'humidity'), json={'humidity': DHT_HUM})
+		temp_req = requests.request('POST', url=(micreau_url + 'temperature'), json={'temperature': DS18B20_TEMP})
+		
 
-			
+		print(temp_req, hum_req)
